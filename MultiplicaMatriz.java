@@ -145,7 +145,20 @@ class MultiplicaMatriz
             A = new long[N/2][N];
             B = new long[N/2][N];
             C = new long[N/2][N/2];
-            Socket conexion = new Socket("localhost",30000+nodo);
+            Socket conexion = null;
+            for(;;)
+            {
+                try 
+                {
+                    conexion = new Socket("52.188.162.136",30000+nodo);
+                    break;
+                } 
+                catch (Exception e) 
+                {
+                    Thread.sleep(100);
+                }
+            }
+            
             DataOutputStream salida = new DataOutputStream(conexion.getOutputStream());
             DataInputStream entrada = new DataInputStream(conexion.getInputStream());
 
